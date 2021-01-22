@@ -1,7 +1,7 @@
 For questions about the scripts or C programs in this project please contact Pankaj Kumar (pankjrf@gmail.com or pk7zuva@gmail.com or pk7z@virginia.edu)
 
--------------------------------------------------------------------------------------------------------
-# CircularDNA_finder
+
+## CircularDNA_finder
 A method to identify Circular DNA (Micro DNA) from pair-end high-throughput sequencing data
 
 **Cite:** Kumar P, Dillon LW, Shibata Y, Jazaeri AA, Jones DR, Dutta A. Normal and Cancerous Tissues Release Extrachromosomal Circular DNA (eccDNA) into the Circulation. Mol. Cancer Res. Sep; 15(9): 1197-1205, 2017.
@@ -12,31 +12,30 @@ Cite: Laura W. Dillon, Kumar P, Shibata Y, Smaranda Willcox, Jack D. Griffith, Y
 
 Shibata Y, Kumar P, Layer R, Willcox S, Gagan JR, Griffith JD, Dutta A. Extrachromosomal microDNAs and chromosomal microdeletions in normal tissues. Science. 2012 Apr 6;336(6077):82-6. doi: 10.1126/science.1213307. Epub 2012 Mar 8.
 
--------------------------------------------------------------------------------------------------------
-Table of Contents
--------------------------------------------------------------------------------------------------------
-        Requirement
-        
-        **Followings are the software requirements to run the circle identification program:**
 
-                An aligner like Bowtie (for read length less than 75) and run it without allowing soft clipping parameter
-                 bowtie2 (https://sourceforge.net/projects/bowtie-bio/files/bowtie2/2.3.5.1/)
-                bedtools (https://github.com/arq5x/bedtools2)
-                samtools (http://samtools.sourceforge.net)
-                parallel (https://www.gnu.org/software/parallel/)
-                     bwa (https://github.com/lh3/bwa)
-              samblaster (https://github.com/GregoryFaust/samblaster)
-                
--------------------------------------------------------------------------------------------------------    
+Table of Contents
+
+Requirement
         
-        All the above tools should be installed on the system. 
--------------------------------------------------------------------------------------------------------       
+Followings are the software requirements to run the circle identification program:
+- An aligner like Bowtie (for read length less than 75) and run it without allowing soft clipping parameter
+- bowtie2 (https://sourceforge.net/projects/bowtie-bio/files/bowtie2/2.3.5.1/)
+- bedtools (https://github.com/arq5x/bedtools2)
+- samtools (http://samtools.sourceforge.net)
+- parallel (https://www.gnu.org/software/parallel/)
+- bwa (https://github.com/lh3/bwa)
+- samblaster (https://github.com/GregoryFaust/samblaster)
+                
+  
+        
+All the above tools should be installed on the system. 
+      
 
 
 Important Note about the update:
 
-**If your sequencing (paired-end) read length is >= 75 bases long and your sample was also enriched for circular DNA then it is recommended to use the following script ** "circle_finder-pipeline-bwa-mem-samblaster.sh"
--------------------------------------------------------------------------------------------------------
+> If your sequencing (paired-end) read length is >= 75 bases long and your sample was also enriched for circular DNA then it is recommended to use the following script "circle_finder-pipeline-bwa-mem-samblaster.sh"
+
 
 
 Important Note for identifying putative circular DNA from ATAC-seq, Whole genome sequencing, Whole exome sequencing etc. Use the following script if the read length is >=75 
@@ -45,64 +44,72 @@ https://github.com/pk7zuva/Circle_finder/blob/master/circle_finder-pipeline-bwa-
 
 
 
-**Note: If your sample was not enriched for circular DNA (like normal ATAC-seq, whole-genome sequencing, etc.) and read length >75 bases long then use the following script ** "circle_finder-pipeline-bwa-mem-samblaster.sh"
--------------------------------------------------------------------------------------------------------
-**Note: Circle_finder can not be used if your sample was not enriched for circular DNA before library preparation AND length of read <75.
--------------------------------------------------------------------------------------------------------  
+> Note: If your sample was not enriched for circular DNA (like normal ATAC-seq, whole-genome sequencing, etc.) and read length >75 bases long then use the following script "circle_finder-pipeline-bwa-mem-samblaster.sh"
 
-#Usage: bash Script_name "Number of processors" "/path-of-whole-genome-file/hg38.fa" "fastq file 1" "fastq file 2" "minNonOverlap between two split reads" "Sample name" "genome build"
--------------------------------------------------------------------------------------------------------  
-
-#bash /path-of-script-dirctory/microDNA-pipeline-bwa-mem-samblaster.sh 16 /path-of-script-dirctory/hg38.fa 1E_S1_L1-L4_R1_001.fastq.75bp-R1.fastq 1E_S1_L1-L4_R2_001.fastq.75bp-R2.fastq 10 1E hg38
--------------------------------------------------------------------------------------------------------  
-
-#Arg1 = Number of processors
-
-#Arg2 = Genome or index file "/hdata1/MICRODNA-HG38/hg38.fa"
-
-#Arg3 = fastq file 1 "1E_S1_L1-L4_R1_001.fastq"
-
-#Arg4 = fastq file 2 "1E_S1_L1-L4_R2_001.fastq"
-
-#Arg5 = minNonOverlap between two split reads "10"
-
-#Arg6 = Sample name "1E"
-
-#Arg7 = genome build "hg38"
+> Note: Circle_finder can not be used if your sample was not enriched for circular DNA before library preparation AND length of read <75.
+ 
 
 
--------------------------------------------------------------------------------------------------------
+### Usage: 
 
-Below instruction are to run Circle_Finder if your read length is <75 bp
+```bash
+bash Script_name "Number of processors" "/path-of-whole-genome-file/hg38.fa" "fastq file 1" "fastq file 2" "minNonOverlap between two split reads" "Sample name" "genome build"
+```
 
+```bash
+bash /path-of-script-dirctory/microDNA-pipeline-bwa-mem-samblaster.sh 16 /path-of-script-dirctory/hg38.fa 1E_S1_L1-L4_R1_001.fastq.75bp-R1.fastq 1E_S1_L1-L4_R2_001.fastq.75bp-R2.fastq 10 1E hg38
+```
+
+
+- Arg1 = Number of processors
+
+- Arg2 = Genome or index file "/hdata1/MICRODNA-HG38/hg38.fa"
+
+- Arg3 = fastq file 1 "1E_S1_L1-L4_R1_001.fastq"
+
+- Arg4 = fastq file 2 "1E_S1_L1-L4_R2_001.fastq"
+
+- Arg5 = minNonOverlap between two split reads "10"
+
+- Arg6 = Sample name "1E"
+
+- Arg7 = genome build "hg38"
+
+
+
+
+## Below instruction are to run Circle_Finder if your read length is <75 bp
+
+```
 Usage: bash "microDNA.InOne.sh" "firstfastqfile_R1_001.fastq" "secondfastqfile_R2_001.fastq" "samplename"  "Island.Mapped-Unmapped_file.Intersect_PE.bed"
+```
 
 Replace the samplename with what ever name you would like to give to your sample. At the end you get a list of circular DNA with number of junctional sequence. It also will give the information about presence of direct repeat at junction (this is one of the property seen with circular DNA).
 
 
-Welcome to the Circle_finder wiki!
+## Welcome to the Circle_finder wiki!
 ### Note: Before you start the below Steps user need to install bowtie2 (https://sourceforge.net/projects/bowtie-bio/files/bowtie2/2.3.5.1/), bedtools, samtools, parallel, bwa and samblaster (https://github.com/GregoryFaust/samblaster) in their system. 
 
 
 Also one need to download the whole genome and index file link provided in to "download-link-hg38-and-bowtie-index.txt" file if you would like to test the pipeline.
--------------------------------------------------------------------------------------------------------  
 
-### This is a step by step guide to run Circle_Finder (if your sample was enriched for circular DNA and the read length of your paired-end sequencing library is <75 bases).###
+## This is a step by step guide to run Circle_Finder (if your sample was enriched for circular DNA and the read length of your paired-end sequencing library is <75 bases).
 
-Step 1: Clone the repository
--------------------------------------------------------------------------------------------------------
-git clone https://github.com/pk7zuva/Circle_finder.git
+### Step 1: Clone the repository
 
-Step 2: Change to "Circle_finder" directory
--------------------------------------------------------------------------------------------------------
-cd Circle_finder
+`git clone https://github.com/pk7zuva/Circle_finder.git`
+
+### Step 2: Change to "Circle_finder" directory
+
+`cd Circle_finder`
 
 In this directory you will find four types of files: 1) *.c 2) *.sh 3) *.txt and 4) C executable that has no extension
 
 Note: Though the "C" executable files are provided it is advisable to make these executable afresh
 
-Step 3: Type the following command on your terminal one by one
--------------------------------------------------------------------------------------------------------
+### Step 3: Type the following command on your terminal one by one
+
+```bash
 cc -o ADDRESS2PROFILEPAIREND address2profile.pairend.c
 
 cc -o DIRECT.REPEAT.FINDER1 direct.repeat.finder1.c
@@ -112,44 +119,62 @@ cc -o JUNCTIONAL.TAG junctional.tag.c
 cc -o LEFT.ALIGNMENT left.alignment.c
 
 cc -o MIDNA_START_END_SCORE midna_start_end_score.c
+```
 
-Step 4: Download the whole genome files and bowtie index files from link given in file "download-link-hg38-and-bowtie-index.txt"
--------------------------------------------------------------------------------------------------------
-cat download-link-hg38-and-bowtie-index.txt
+### Step 4: Download the whole genome files and bowtie index files from link given in file "download-link-hg38-and-bowtie-index.txt"
 
+`cat download-link-hg38-and-bowtie-index.txt`
+
+```bash
 http://genome.bioch.virginia.edu/CIRCLE_FINDER_MASTER/hg38.fa http://genome.bioch.virginia.edu/CIRCLE_FINDER_MASTER/hg38.1.bt2 http://genome.bioch.virginia.edu/CIRCLE_FINDER_MASTER/hg38.2.bt2 http://genome.bioch.virginia.edu/CIRCLE_FINDER_MASTER/hg38.3.bt2 http://genome.bioch.virginia.edu/CIRCLE_FINDER_MASTER/hg38.4.bt2 http://genome.bioch.virginia.edu/CIRCLE_FINDER_MASTER/hg38.fa.amb http://genome.bioch.virginia.edu/CIRCLE_FINDER_MASTER/hg38.fa.ann http://genome.bioch.virginia.edu/CIRCLE_FINDER_MASTER/hg38.fa.bwt http://genome.bioch.virginia.edu/CIRCLE_FINDER_MASTER/hg38.fa.fai http://genome.bioch.virginia.edu/CIRCLE_FINDER_MASTER/hg38.fa.pac http://genome.bioch.virginia.edu/CIRCLE_FINDER_MASTER/hg38.fa.sa http://genome.bioch.virginia.edu/CIRCLE_FINDER_MASTER/hg38.rev.1.bt2 http://genome.bioch.virginia.edu/CIRCLE_FINDER_MASTER/hg38.rev.2.bt2
+```
 
-Example download command: wget http://genome.bioch.virginia.edu/CIRCLE_FINDER_MASTER/hg38.fa
+Example download command: 
 
-Step 5: Download the fastq files. Link to download these files is given in file "fastq-file-download-link.txt"
--------------------------------------------------------------------------------------------------------
+```
+wget http://genome.bioch.virginia.edu/CIRCLE_FINDER_MASTER/hg38.fa
+```
+
+### Step 5: Download the fastq files. Link to download these files is given in file "fastq-file-download-link.txt"
+
+```
 cat fastq-file-download-link.txt
+```
 
+```
 http://genome.bioch.virginia.edu/CIRCLE_FINDER_MASTER/Index11_1.fq http://genome.bioch.virginia.edu/CIRCLE_FINDER_MASTER/Index11_2.fq
+```
 
-Step 6: You are all set to run the pipeline
--------------------------------------------------------------------------------------------------------
+### Step 6: You are all set to run the pipeline
+
+```bash
 bash /path-of-the-"Circle_finder"-directory/microDNA.InOne.sh /path-of-the-"Circle_finder"-directory/hg38 Index11_1.fq Index11_2.fq 24 C4-2 49 10000 /path-of-the-"Circle_finder"-directory &
+```
 
-#Arg1 is bowtie2 index file "/hdata1/CIRCLE_ANALYSIS/MICRODNA-HG38/hg38"
 
-#Arg2 is fastq file 1 "fastqfile1"
+- Arg1 is bowtie2 index file "/hdata1/CIRCLE_ANALYSIS/MICRODNA-HG38/hg38"
 
-#Arg3 is fastq file 2 "fastqfile2"
+- Arg2 is fastq file 1 "fastqfile1"
 
-#Arg4 is # of processor "24" Higher the number lower would be run time.
+- Arg3 is fastq file 2 "fastqfile2"
 
-#Arg5 is Sample name  "C4-2" in this case because circular DNA was isolated from C4-2 cell lines. You want give anyname to sample 
+- Arg4 is # of processor "24" Higher the number lower would be run time.
 
-#Arg6 Read length "49"
+- Arg5 is Sample name  "C4-2" in this case because circular DNA was isolated from C4-2 cell lines. You want give anyname to sample 
 
-#Arg7 Longest circle wish to identify "10000" Higher this number more time it would take to finish the run.
+- Arg6 Read length "49"
 
-#Arg8 Path of script directory
+- Arg7 Longest circle wish to identify "10000" Higher this number more time it would take to finish the run.
 
-Step 7: Final output file "microDNA.JT.postmotif.fa"
--------------------------------------------------------------------------------------------------------
-head microDNA.JT.postmotif.fa chr1	28761	29551	0	1	NOMOTIF
+- Arg8 Path of script directory
+
+
+### Step 7: Final output file "microDNA.JT.postmotif.fa"
+
+`head microDNA.JT.postmotif.fa`
+
+```bash
+chr1	28761	29551	0	1	NOMOTIF
 
 chr1	199385	199915	0	1	GTC
 
@@ -168,9 +193,11 @@ chr1	980217	981339	0	1	G
 chr1	982484	982697	1	0	NOMOTIF
 
 chr1	983705	984358	0	2	C
+```
 
-Step 8: Explanation of output
--------------------------------------------------------------------------------------------------------
+### Step 8: Explanation of output
+
+```bash
 Column 1 "Chromosome name"
 
 Column 2 "start position of circle"
@@ -184,9 +211,12 @@ Column 5 "Number of reads mapping on circle junction from "-" strand"
 Column 6 "micro homology (if any) at the junction of circle"
 
 Step 9: If you wish to extract only those circular DNA that has evidence of at least one read mapping on circle junction as "+" and "-" orientation
--------------------------------------------------------------------------------------------------------
-awk '$4>0 && $5>0' microDNA.JT.postmotif.fa | head
+```
 
+`awk '$4>0 && $5>0' microDNA.JT.postmotif.fa | head`
+
+
+```bash
 chr1	1069854	1070524	1	2	C
 
 chr1	1069934	1071919	6	2	NOMOTIF
@@ -206,3 +236,4 @@ chr1	1579383	1580962	1	1	GTA
 chr1	1667878	1668245	9	6	C
 
 chr1	1772882	1773318	2	3	A
+```
